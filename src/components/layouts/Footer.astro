@@ -42,7 +42,15 @@ const quote =
         <p>
             &copy; {new Date().getFullYear()} <a href="https://www.linkedin.com/in/simon-renoux" target="_blank">Simon Renoux</a> - All Rights Reserved
         </p>
-        <p class="font-extralight">
-            UwU • {quote} • UwU
-        </p>
+        {
+            quote.includes("cynthia.dev") ? (
+                <p class="font-extralight">
+                    UwU • <a href="https://cynthia.dev">{quote}</a> • UwU
+                </p>
+            ) : (
+                <p class="font-extralight">
+                    UwU • {quote} • UwU
+                </p>
+            )
+        }
 </footer>
