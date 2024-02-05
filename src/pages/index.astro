@@ -3,6 +3,28 @@ import Layout from "@/components/layouts/Layout.astro";
 import Card from "@/components/Card.astro";
 import GenericIcon from "../components/GenericIcon.astro";
 import StarLine from "../components/StarLine.astro";
+import type { Repository } from '@/types/GithubAPI';
+import type { Mod } from '@/types/ModrinthAPI';
+import type { Time } from '@/types/WakatimeAPI';
+
+const repos: Repository[] = await fetch("https://api.github.com/users/fantomitechno/repos").then(response => response.json());
+const mods: Mod[] = await fetch("https://api.modrinth.com/v2/user/fantomitechno/projects").then(response => response.json());
+const modDls = mods.reduce((acc, mod) => acc + mod.downloads, 0);
+
+const followers = mods.reduce((acc, mod) => acc + mod.followers, 0) + repos.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+
+const wakatime: Time = await fetch("https://wakatime.com/share/@fantomitechno/42005c53-724b-4dd0-b43a-aaea5f640b87.json").then(response => response.json());
+
+const descriptions = [
+  // foxboy who...
+  "eats chocolate (too much)",
+  "drink ice tea",
+  "plays Minecraft",
+  "creates random projects in the middle of the night",
+  "is a CS student",
+];
+
+const description = descriptions[Math.floor(Math.random() * descriptions.length)];
 ---
 
 <Layout title="Simon" description="Simon website">
@@ -12,7 +34,7 @@ import StarLine from "../components/StarLine.astro";
         <img src="/images/coco.webp" alt="logo" class="h-full aspect-square rounded-full border-4 border-zinc-500"/>
         <div class="max-lg:flex-1 px-4">
             <p>Artwork by
-                <a class="underline">cocoNOTshell</a>
+                <a href="https://twitter.com/Coconotshell01" class="underline">cocoNOTshell</a>
             </p>
         </div>
     </div>
@@ -29,16 +51,18 @@ import StarLine from "../components/StarLine.astro";
         <div class="flex flex-col justify-center gap-y-40 pt-20 w-11/12 md:w-9/12 h-full">
             <div class="flex gap-y-10 flex-col md:flex-row justify-between">
                 <div class="flex flex-col justify-center items-center md:flex-1">
-                    <img src="favicon.ico" alt="Profile Picture"
-                         class="w-24 h-24 rounded-full mb-12"/>
+                    <img src="images/foxboy_in_da_forest.webp" alt="Profile Picture" class="w-24 h-24 rounded-full mb-12"/>
 
                     <h1 class="text-6xl font-bold text-center text-white">
-                        Hi, I'm Simon
+                        Hi, I'm Simon,
                     </h1>
+                    <p class="text-center text-zinc-150 text-2xl mt-4 w-2/3 font-bold">
+                        a foxboy who {description}
+                    </p>
                     <p class="text-center text-zinc-300 text-xl font-medium mt-4 w-1/2">
-                        I'm a full-stack developer and designer, I love to create things that live on the internet,
-                        whether
-                        that be websites, applications, or anything in between.
+                        I'm a backend developer and a student.
+                        I create random projects and put too much time in school projects.
+                        I also play video games but only if they are short or multiplayer.
                     </p>
                     <button class="rounded-2xl bg-primary-dark hover:bg-primary-dark/50 text-white px-8 py-4 mt-8 transition-all hover:scale-95">
                         Contact me
@@ -46,16 +70,16 @@ import StarLine from "../components/StarLine.astro";
                 </div>
 
                 <div class="flex max-md:flex-wrap md:flex-col justify-center gap-10 items-center vertical md:flex-0">
-                    <a href="#">
+                    <a href="https://discord.gg/NrnEpamdMc">
                         <GenericIcon asset="company/discord"/>
                     </a>
 
-                    <a href="#">
+                    <a href="https://github.com/fantomitechno">
                         <GenericIcon asset="company/github"/>
                     </a>
 
-                    <a href="#">
-                        <GenericIcon asset="company/twitter"/>
+                    <a href="https://linkedin.com/in/simon-renoux">
+                        <GenericIcon asset="company/linkedin"/>
                     </a>
                 </div>
             </div>
@@ -65,16 +89,14 @@ import StarLine from "../components/StarLine.astro";
             <div class="flex flex-col gap-y-20">
                 <div class="flex flex-col justify-center items-center">
                     <h3 class="text-6xl font-semibold text-center text-white break-all">
-                        Experience
+                        Skills
                     </h3>
                     <p class="text-center text-zinc-400 text-xl font-normal mt-4 w-1/2">
-                        I have been developing and designing for over ... years, I have worked with a variety of
-                        languages and frameworks, and I am always looking to learn more.
-                        We can work together to create something amazing.
+                        I have been developing personal and school projects since 2020,
+                        I have experience in various programming languages and frameworks like the one listed below.
                     </p>
                 </div>
                 <div class="flex flex-wrap gap-10 items-center justify-center">
-                    <GenericIcon asset="language/javascript"/>
                     <GenericIcon asset="language/typescript"/>
                     <GenericIcon asset="language/python"/>
                     <GenericIcon asset="language/java"/>
@@ -82,19 +104,19 @@ import StarLine from "../components/StarLine.astro";
                 </div>
 
                 <div class="flex justify-evenly items-center flex-wrap gap-10">
-                    <Card title="300+" subtext="Projects">
+                    <Card title={repos.length + "+"} subtext="Projects">
                         <img src="svg/generic/page.svg" alt="icon">
                     </Card>
 
-                    <Card title="2.3M+" subtext="Downloads">
+                    <Card title={modDls + "+"} subtext="Downloads">
                         <img src="svg/generic/download.svg" alt="icon">
                     </Card>
 
-                    <Card title="800+" subtext="Writing hours">
+                    <Card title={Math.floor(wakatime.data.grand_total.total_seconds_including_other_language/3600) + "+"} subtext="Coding hours">
                         <img src="svg/generic/time.svg" alt="icon">
                     </Card>
 
-                    <Card title="50+" subtext="Clients">
+                    <Card title={followers + "+"} subtext="Watchers">
                         <img src="svg/generic/people.svg" alt="icon">
                     </Card>
                 </div>
@@ -103,7 +125,7 @@ import StarLine from "../components/StarLine.astro";
                 <div class="flex justify-center">
                     <a href="https://github.com/fantomitechno?tab=repositories" class="text-white underline">
                         <button class="rounded-2xl bg-secondary text-white px-8 py-4 mt-8 hover:bg-secondary/50 transition-all hover:scale-95">
-                            Projects I've dones
+                            Projects I've dones (Github)
                         </button>
                     </a>
                 </div>
