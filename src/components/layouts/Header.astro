@@ -1,0 +1,26 @@
+---
+import {NavItem} from "../../type";
+
+const navItems: Array<NavItem> = [
+    { title: "Blog", url: "#features" },
+    { title: "About", url: "#compatibility" },
+    { title: "Projects", url: "#showcase" },
+];
+---
+
+<header class="w-full h-header px-8 md:px-[120px] py-8 flex justify-center md:justify-between items-center">
+    <div class="flex gap-8 items-center">
+        <img src="/favicon.ico" alt="" class="rounded-full w-16 h-16">
+        <p class="text-white text-xl font-extrabold">fantomitechno</p>
+    </div>
+    <div class="hidden md:flex gap-10 lg:gap-20 justify-end items-center">
+        {navItems.map((item) => (
+            <a
+                href={item.url}
+                class="text-white hover:text-primary transition-colors duration-200 font-extrabold text-xl"
+            >
+                {item.title}
+            </a>
+        ))}
+    </div>
+</header>

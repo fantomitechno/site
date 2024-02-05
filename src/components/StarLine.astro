@@ -1,0 +1,51 @@
+---
+export interface Props {
+    color: string;
+}
+
+const {color} = Astro.props;
+const renderedColor = `${color}80`;
+---
+
+<div class="flex justify-evenly items-center w-full relative my-8">
+    <span class="w-full h-[1px] rounded-full"></span>
+    <svg
+            class="flex-none w-8 h-8 mx-4"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 12 12"
+    >
+        <path
+                d="M6.47.828a.5.5 0 00-.94 0L4.268 4.267.827 5.53a.5.5 0 000 .938l3.44 1.264 1.264 3.44a.5.5 0 00.938 0l1.264-3.44 3.44-1.264a.5.5 0 000-.938l-3.44-1.264L6.47.827z"
+                fill="url(#bluePinkGradient)"
+                stroke="#fff"
+                stroke-linejoin="round"></path>
+        <defs>
+            <linearGradient
+                    id="bluePinkGradient"
+                    x1="1"
+                    y1="11"
+                    x2="11.01"
+                    y2="10.99"
+                    gradientUnits="userSpaceOnUse"
+            >
+                <stop stop-color="" offset=""></stop>
+                <stop offset="1" stop-color=""></stop>
+            </linearGradient>
+        </defs>
+    </svg>
+    <span class="w-full h-[1px] rounded-full"></span>
+</div>
+
+<style define:vars={{renderedColor}}>
+    span {
+        background: linear-gradient(
+                to right,
+                #fff0,
+                var(--renderedColor),
+                rgba(255, 255, 255, 0.35),
+                var(--renderedColor),
+                #fff0
+        );
+    }
+</style>

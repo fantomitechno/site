@@ -1,0 +1,22 @@
+---
+interface Props {
+    title: string;
+    subtext: string;
+}
+
+const props = Astro.props;
+---
+
+<div class="flex items-center p-4 h">
+    <div class="flex self-start mt-0.5">
+        <slot/>
+    </div>
+    <div class="ml-6 flex flex-col py-0.5 gap-y-1">
+        <p class="text-2xl font-black">
+            {props.title}
+        </p>
+        <p class="text-lg font-normal">
+            {props.subtext}
+        </p>
+    </div>
+</div>

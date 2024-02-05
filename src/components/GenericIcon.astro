@@ -1,0 +1,40 @@
+---
+interface Props {
+    asset: string;
+    percent?: number;
+}
+
+const {asset, percent = 0} = Astro.props;
+
+const dashArray = 220;
+const dashOffset = dashArray - (dashArray * percent) / 100;
+---
+
+<div
+        class="w-fit bg-black/20 rounded-xl p-4 flex flex-col items-center justify-center space-y-4"
+>
+    <div class="w-20 h-20">
+        <div
+                class="inline-flex relative items-center justify-center overflow-hidden rounded-full"
+        >
+            <svg class="w-20 h-20">
+                <circle
+                        stroke-width="5"
+                        stroke-dasharray={dashArray}
+                        stroke-linecap="round"
+                        stroke-dashoffset={dashOffset}
+                        fill="transparent"
+                        r="35"
+                        cx="40"
+                        cy="40"
+                        style="stroke: rgb(255, 89, 0);"></circle>
+            </svg>
+            <span
+                    class="absolute w-12 h-12 fill-white"
+                    style="color: rgb(255, 89, 0);"
+            >
+                <img class="h-full hover:brightness-50 transition-all" src=`svg/${asset}.svg` alt=""/>
+            </span>
+        </div>
+    </div>
+</div>
