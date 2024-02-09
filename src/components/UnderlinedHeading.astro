@@ -29,18 +29,27 @@
 import type { AstroBuiltinAttributes } from "astro";
 
 export interface Props {
-  href: string;
+  level: number;
   class?: AstroBuiltinAttributes["class:list"];
-  activeClass?: AstroBuiltinAttributes["class:list"];
-  exact?: boolean;
 }
 
-const { href, class: cls, activeClass, exact } = Astro.props;
-const matches = exact
-  ? Astro.url.pathname === href
-  : Astro.url.pathname.startsWith(href);
+const { level, class: className } = Astro.props;
+const Heading = `h${level}`;
 ---
 
-<a href={href} class:list={[cls, matches && activeClass]}>
-  <slot />
-</a>
+<Heading class:list={["underlined", className]}>
+  <span><slot /></span>
+</Heading>
+<style>
+  .underlined {
+    padding-bottom: 0.15em;
+  }
+
+  .underlined span {
+    background-image: linear-gradient(to right, #e2931d, #e2931d);
+    background-position: 0 1.18em;
+    background-repeat: repeat-x;
+    background-size: 100% 0.16em;
+    padding-bottom: 0.16em;
+  }
+</style>

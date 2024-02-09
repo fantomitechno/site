@@ -26,21 +26,30 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import type { AstroBuiltinAttributes } from "astro";
+
+import type { AstroBuiltinAttributes } from 'astro';
+import UnderlinedHeading from './UnderlinedHeading.astro'
 
 export interface Props {
-  href: string;
-  class?: AstroBuiltinAttributes["class:list"];
-  activeClass?: AstroBuiltinAttributes["class:list"];
-  exact?: boolean;
+	title?: string
+	class?: AstroBuiltinAttributes['class:list']
 }
 
-const { href, class: cls, activeClass, exact } = Astro.props;
-const matches = exact
-  ? Astro.url.pathname === href
-  : Astro.url.pathname.startsWith(href);
+const { title, class: className } = Astro.props
 ---
+<section class:list={[ className ]}>
+	{title && <UnderlinedHeading level={2} class='title'>{title}</UnderlinedHeading>}
+	<slot/>
+</section>
 
-<a href={href} class:list={[cls, matches && activeClass]}>
-  <slot />
-</a>
+<style>
+	section {
+		margin-bottom: 2rem;
+	}
+
+	.title {
+		margin: 0;
+		font-size: 1.25rem;
+		font-weight: 400;
+	}
+</style>
