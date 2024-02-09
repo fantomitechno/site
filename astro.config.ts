@@ -9,5 +9,6 @@ export default defineConfig({
   adapter: node({
     mode: "standalone"
   }),
-  integrations: [image()]
+  integrations: [image()],
+  scopedStyleStrategy: "where"
 });

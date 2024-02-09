@@ -1,4 +1,7 @@
 ---
+import Navbar from "../components/Navbar.astro"
+import Footer from "../components/Footer.astro"
+
 interface Props {
   title?: string;
   description?: string;
@@ -42,13 +45,12 @@ const icon = christmas ? "/favicon-christmas.ico" : "/favicon.ico";
     <meta name="twitter:image" content="/social-image.png" />
   </head>
   <body>
-    <!--<Paws />
     <div id="page-contents">
       <Navbar />
+      <slot />
     </div>
     <Footer />
-    <script src="../assets/spa.js"></script> -->
-    <slot />
+    <script src="../assets/spa.js"></script>
     <style is:global>
       /** FONTS */
       @font-face {
@@ -118,7 +120,7 @@ const icon = christmas ? "/favicon-christmas.ico" : "/favicon.ico";
         right: 16px;
         width: 24px;
         height: 24px;
-        border: 3px solid #f49898;
+        border: 3px solid #fabd60;
         border-bottom-color: transparent;
         border-radius: 50%;
         display: inline-block;
@@ -153,8 +155,8 @@ const icon = christmas ? "/favicon-christmas.ico" : "/favicon.ico";
 
         background-image: linear-gradient(
           to right,
-          #f49898,
-          #f49898 50%,
+          #fabd60,
+          #fabd60 50%,
           currentColor 50%,
           currentColor
         );
