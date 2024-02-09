@@ -1,7 +1,34 @@
 ---
 import GlobalLayout from "../layouts/GlobalLayout.astro";
+
+import PageHeader from "../components/PageHeader.astro";
+
+const birthDate = new Date('2004-09-18')
+const today = new Date()
+const dMonths = today.getUTCMonth() - birthDate.getUTCMonth()
+const dDays = today.getUTCDate() - birthDate.getUTCDate()
+const dYears = today.getUTCFullYear() - birthDate.getUTCFullYear()
+const age = dYears - +(dMonths < 0 || (dMonths === 0 && dDays < 0))
+
+const descriptions = [
+	// foxboy who...
+  "eats chocolate (too much)",
+  "drink ice tea",
+  "plays Minecraft",
+  "creates random projects in the middle of the night",
+  "is a CS student",
+  "sleeps... sometimes",
+]
+
+const description = descriptions[Math.random() * descriptions.length | 0]
 ---
 
-<GlobalLayout>
-  <main>T</main>
+<GlobalLayout title="fantomitechno's website">
+  <PageHeader>
+		Hello, I'm fantomitechno
+		<Fragment slot='subtitle'>foxboy who {description}</Fragment>
+	</PageHeader>
+  <main>
+    {age}
+  </main>
 </GlobalLayout>
