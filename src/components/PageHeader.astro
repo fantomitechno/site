@@ -29,10 +29,16 @@
 import UnderlinedHeading from "./UnderlinedHeading.astro";
 ---
 
-<header class:list={{ "has-subtitle": Astro.slots.has("subtitle") }}>
+<header class:list={{ "has-subtitle": Astro.slots.has("subtitle") || Astro.slots.has("surname") }}>
   <UnderlinedHeading level={1} class="title">
     <slot />
-  </UnderlinedHeading>
+  </UnderlinedHeading>{
+    Astro.slots.has("surname") && (
+      <div class="surname">
+        <slot name="surname" />
+      </div>
+    )
+  }
   {
     Astro.slots.has("subtitle") && (
       <div class="subtitle">
@@ -60,13 +66,13 @@ import UnderlinedHeading from "./UnderlinedHeading.astro";
   header::before {
     content: "";
     position: absolute;
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 5rem;
+    height: 5rem;
     top: 4px;
-    left: 4.5px;
+    left: -0.5em;
     transform: rotate(15deg);
     background-image: url("../assets/me_girl.png");
-    background-size: 4.5rem 4.5rem;
+    background-size: 5rem 5rem;
     background-position: center;
     background-repeat: no-repeat;
     border: 0.2rem solid #e2931d;
@@ -83,5 +89,12 @@ import UnderlinedHeading from "./UnderlinedHeading.astro";
     margin-top: -0.1rem;
     font-weight: 400;
     font-size: 1.6rem;
+  }
+
+  .surname {
+    margin: 0;
+    margin-top: -0.1rem;
+    font-weight: 300;
+    font-size: 1.4rem;
   }
 </style>
