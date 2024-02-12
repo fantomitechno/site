@@ -1,7 +1,63 @@
 ---
 import GlobalLayout from "../layouts/GlobalLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Section from "../components/Section.astro";
 ---
 
 <GlobalLayout>
-  <main>T2</main>
+  <PageHeader>
+    Where to find me?
+    <Fragment slot="subtitle">on Earth... not what you wanted?</Fragment>
+  </PageHeader>
+  <Section title="Accounts">
+    <p>I have social medias with dm open but I'm mostly active on Discord</p>
+    <ul>
+      <li>
+        Discord: <a
+          href="https://discord.com/users/563749920683720709"
+          target="_blank"
+        >
+          fantomitechno
+        </a>, join my
+        <a href="https://discord.gg/NrnEpamdMc" target="_blank">Discord</a>
+        before dming me (I locked my dms and don't accept friend request)
+      </li>
+      <li>
+        Twitter: <a href="https://twitter.com/fantomitechno" target="_blank">
+          @fantomitechno
+        </a> or <a href="https//twiter.com/simon_th_foxboy" target="_blank">
+          @simon_th_foxboy
+        </a>
+      </li>
+    </ul>
+  </Section>
+  <Section title="Other links">
+    <ul>
+      <li>
+        GitHub: <a href="https://github.com/fantomitechno" target="_blank">
+          fantomitechno</a>, to find all my projects
+      </li>
+      <li>
+        Modrinth: <a
+          href="https://modrinth.com/user/fantomitechno"
+          target="_blank"
+        >
+          fantomitechno</a>, to find my mods for Minecraft and get updates
+      </li>
+      <li>
+        Twitch: <a
+          href="https://twitch.tv/fantomitechno"
+          target="_blank"
+        >
+          fantomitechno</a>, to catch my streams (when I have time... so not a lot of streams by year)
+      </li>
+        Ko-fi: <a
+          href="https://ko-fi.com/fantomitechno"
+          target="_blank"
+        >
+          fantomitechno</a>, if you want to commission me or just want to be kind *pleading face*
+      </li>
+    </ul>
+  </Section>
+  <p>Very original for my username, I know</p>
 </GlobalLayout>
