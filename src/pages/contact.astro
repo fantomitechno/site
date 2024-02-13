@@ -1,0 +1,29 @@
+---
+import GlobalLayout from "../layouts/GlobalLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import Section from "../components/Section.astro";
+---
+<GlobalLayout title="Contact me - Simon">
+  <PageHeader>
+    Get in touch
+  </PageHeader>
+  <Section>
+    As stated on the <a href="/socials">socials</a> page,
+    you can dm me on any of these platforms but if you want
+    something more traditional you can still use <s>carrier pigeons</s>
+    emails
+  </Section>
+  <Section title="Mails">
+    <ul>
+      <li>
+        <a href="mailto:me@fantomitechno.live" target='_blank' rel='noreferrer'>me@fantomitechno.live</a>
+      </li>
+      <li>
+        <a href="mailto:simon@renoux.dev" target='_blank' rel='noreferrer'>simon@renoux.dev</a> for serious things
+      </li>
+      <li>
+        <a href="mailto:contact@renoux.dev" target='_blank' rel='noreferrer'>contact@renoux.dev</a> for my projects
+      </li>
+    </ul>
+  </Section>
+</GlobalLayout>
