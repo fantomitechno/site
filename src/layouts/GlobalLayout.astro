@@ -26,15 +26,16 @@
  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-import Navbar from "../components/Navbar.astro"
-import Footer from "../components/Footer.astro"
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-import socialImage from '../assets/social-image.png'
+import socialImage from "../assets/social-image.png";
 
 const { title: t, description: d } = Astro.props;
 
@@ -51,6 +52,7 @@ const icon = christmas ? "/favicon-christmas.ico" : "/favicon.ico";
 <!doctype html>
 <html lang="en">
   <head>
+    <ViewTransitions />
     <meta charset="utf8" />
     <meta name="theme-color" content="#f8b859" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -79,7 +81,6 @@ const icon = christmas ? "/favicon-christmas.ico" : "/favicon.ico";
       <slot />
     </div>
     <Footer />
-    <script src="../assets/spa.js"></script>
     <style is:global>
       /** FONTS */
       @font-face {
